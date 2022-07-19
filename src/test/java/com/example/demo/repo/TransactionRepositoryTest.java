@@ -3,14 +3,13 @@ package com.example.demo.repo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
-class TestRepositoryTransaction {
+class TransactionRepositoryTest {
 
   @Autowired
   private TransactionRepository transactionRepository;
@@ -28,9 +27,6 @@ class TestRepositoryTransaction {
     t1.getParticipants().add(u1);
     t1.getParticipants().add(u2);
     t1.getParticipants().add(u3);
-
-
-    transactionRepository.findAll().forEach(System.out::println);
 
     var x = transactionRepository.findAllCustom("test user 1", null, Pageable.ofSize(3));
 
